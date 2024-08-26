@@ -1,0 +1,46 @@
+{
+    "recipe": {
+        "name": "Roasted Potatoes and Chanterelles",
+        "ingredients": [
+            "1 lb. potatoes, peeled and cut into 1-inch pieces",
+            "1/2 lb. chanterelle mushrooms, cleaned",
+            "1/4 cup olive oil",
+            "1/4 teaspoon salt",
+            "1/4 teaspoon black pepper",
+            "1/4 cup chopped parsley"
+        ],
+        "instructions": [
+            "Preheat oven to 400 degrees F (200 degrees C).",
+            "In a large bowl, combine potatoes, chanterelles, olive oil, salt, and pepper. Toss to coat.",
+            "Spread vegetables in a single layer on a baking sheet.",
+            "Roast in preheated oven for 30-40 minutes, or until potatoes are tender and chanterelles are golden brown.",
+            "Sprinkle with parsley and serve immediately."
+        ]
+    },
+    {
+        "recipe": {
+            "name": "Macarrão com Carne Moída e Tomate",
+            "ingredients": [
+                "500g de macarrão tipo espaguete",
+                "500g de carne moída",
+                "1 cebola picada",
+                "2 dentes de alho picados",
+                "2 latas de tomate picado",
+                "1 colher de sopa de azeite de oliva",
+                "Sal e pimenta do reino a gosto",
+                "Queijo parmesão ralado a gosto (opcional)"
+            ],
+            "instructions": [
+                "Cozinhe o macarrão em água fervente com sal até ficar al dente. Escorra e reserve.",
+                "Em uma panela grande, aqueça o azeite de oliva em fogo médio.",
+                "Adicione a cebola picada e refogue até ficar transparente.",
+                "Acrescente o alho picado e refogue por mais 1 minuto.",
+                "Adicione a carne moída e cozinhe em fogo médio até dourar, mexendo ocasionalmente.",
+                "Tempere com sal e pimenta do reino a gosto.",
+                "Adicione o tomate picado e cozinhe por 10 minutos, ou até o molho engrossar.",
+                "Adicione o macarrão cozido ao molho e misture bem.",
+                "Sirva quente, decorado com queijo parmesão ralado a gosto (opcional)."
+            ]
+        }
+    }
+}
