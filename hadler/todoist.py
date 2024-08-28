@@ -24,11 +24,8 @@ def getOrCreateProjects ():
         continue
     
     if not existent:
-        try:
-            create_project = requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data)
-        except:
+        create_project = requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data)
+        if create_project.status_code != 200:
             print(f"Error! {create_project.status_code}")
         
-
-teste = getOrCreateProjects()
-print(teste)
+    

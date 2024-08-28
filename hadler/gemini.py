@@ -1,15 +1,23 @@
 import google.generativeai as genIA
 import os
-import pprint
+import typing_extensions as typing
+import json
 
 genIA.configure(
     api_key=os.getenv("GOOGLE_API_KEY"),
 )
 
+class Recipe (typing.TypedDict):
+    recipe_name : str
+    ingredients: str
+
+
+
+
 config = genIA.GenerationConfig(
     candidate_count=1,
-    temperature=0.7, 
-
+    temperature=0.7,
+    response_mime_type="application/json"
 )
 
 output_sample =   {"recipe": {
@@ -40,6 +48,7 @@ def CreateRecipe(prompt):
         contents=prompt,
         generation_config=config)
 
-    json = response.to_dict
+    response_str = str(response.text)
 
-    return json
+
+    return response_str
