@@ -20,8 +20,8 @@ def SearchGroceryList ():
             return new_dict.get('id')
         continue
     return existent
-    
-def createGroceryList(existent : bool) -> int:
+
+def postGroceryListProject(existent : bool) -> int:
     data ={ 
     "name":"Grocery List",
     "view_style":"List",
@@ -33,13 +33,51 @@ def createGroceryList(existent : bool) -> int:
             print(f"Error! {grocery_list.status_code}")
     return grocery_list.get("id")
 
-def createGroceryList(grocery : dict)->str:
-    grocery_id = SearchGroceryList()
+def postGroceryListTask(grocery : dict)->str:
+    if SearchGroceryList() != ChildProcessError: grocery_id = SearchGroceryList()
     for key,value in grocery.items():
         data = {
         "content":f"{key} : {value}",
         "project_id": grocery_id
-    }
+    } 
+        res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
+
+    return res.status_code
+
+
+def SearchWeeklyMeal ():
+    all_projects = requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header).json()
+    existent = False
+    
+    for project in all_projects:
+        new_dict = dict(project)
+        if new_dict.get('name')== "Weekly List":
+            existent = True
+            return new_dict.get('id')
+        continue
+    return existent
+
+def postWeeklyMealProject(existent : bool) -> int:
+    data ={ 
+    "name":"Weekly Meal",
+    "view_style":"List",
+}
+    if not existent:
+        grocery_list = dict(requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data).json)
+
+        if grocery_list.status_code != 200:
+            print(f"Error! {grocery_list.status_code}")
+            return ChildProcessError
+    return grocery_list.get("id")
+
+def postWeeklyMeal(meal : dict)->str:
+    if SearchWeeklyMeal() != ChildProcessError: grocery_id = SearchWeeklyMeal()
+    for key,value in meal.items():
+        data = {
+        "content":f"{meal.get("name")}",
+        "description": f"{meal.get("ingredients")} \n {meal.get("instructions")}",
+        "project_id": grocery_id
+    } 
         res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
 
     return res.status_code

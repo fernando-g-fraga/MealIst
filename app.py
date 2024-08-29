@@ -1,4 +1,5 @@
 from hadler.gemini import CreateRecipe
+import app_midlewere
 import json
 import io
 
@@ -22,10 +23,4 @@ def coletaReceitas():
     return list_ingredients 
 
 
-output = CreateRecipe(coletaReceitas())
 
-if output == False:
-    print("Houve um erro ao gerar as receitas, tente novamente.")
-    coletaReceitas()
-
-print(output)
