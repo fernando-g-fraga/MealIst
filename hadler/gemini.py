@@ -24,10 +24,13 @@ def configureGemini():
             ]}
         }
 
-    system_instruction = f" Your goal is to generate recipes.\
-    You will receive a list of ingredients available and optionally dietary restrictions\
-    You will output a Json format, here is a sample: {str(output_sample)}\
-    You will always output in portuguese Brazilian Language and use the SI Metric System"
+    system_instruction = '''You will receive at least a recipe. Your goal is to create two json files: 
+                        Recipes: {
+                        name: recipe name, 
+                        ingredients: ["ingredient1", "ingredient2", ...], 
+                        directions: ["step 1 - ..."]} 
+                        Grocery_shop: {"ingredient1": 2 boxes, "ingredient2": 1kg}. 
+                        All the responses should be in portuguese'''
 
 
     model = genIA.GenerativeModel(
@@ -37,9 +40,14 @@ def configureGemini():
 
     return model
 
-def CreateRecipe(prompt):
+def CreateRecipe(list_ingredients:list):
     model = configureGemini()
-    response = model.generate_content(contents=prompt).text
-    response = str(response)
-    
-    return response
+    recipe = []
+    for i in list_ingredients:
+        prompt = f"Give me the recipe for {i} and the grocery list"
+        try: 
+            recipe.append(model.generate_content(contents=prompt).text)
+        except:
+            return False
+        
+    return recipe

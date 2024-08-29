@@ -1,6 +1,7 @@
 import requests
 import json
 import os
+import util
 
 token = os.getenv("TODOIST_API_KEY_DEV")
 header = {'Authorization':f"Bearer {token}"}
@@ -8,11 +9,7 @@ header = {'Authorization':f"Bearer {token}"}
 
 # print (teste.content)
 
-def getOrCreateProjects ():
-    data ={ 
-    "name":"Grocery List",
-    "view_style":"List",
-}
+def SearchGroceryList ():
     all_projects = requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header).json()
     existent = False
     
@@ -20,12 +17,34 @@ def getOrCreateProjects ():
         new_dict = dict(obj)
         if new_dict.get('name')== "Grocery List":
             existent = True
-            break
+            return new_dict.get('id')
         continue
+    return existent
     
+def createGroceryList(existent : bool) -> int:
+    data ={ 
+    "name":"Grocery List",
+    "view_style":"List",
+}
     if not existent:
-        create_project = requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data)
-        if create_project.status_code != 200:
-            print(f"Error! {create_project.status_code}")
+        grocery_list = dict(requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data).json)
+
+        if grocery_list.status_code != 200:
+            print(f"Error! {grocery_list.status_code}")
+    return grocery_list.get("id")
+
+def createGroceryList(grocery : dict)->str:
+    grocery_id = SearchGroceryList()
+    for key,value in grocery.items():
+        data = {
+        "content":f"{key} : {value}",
+        "project_id": grocery_id
+    }
+        res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
+
+    return res.status_code
         
+
+grocerylist = createGroceryList(util.grocery)
+print(grocerylist)
     
