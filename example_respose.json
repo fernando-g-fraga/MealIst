@@ -17,8 +17,8 @@
             "Sprinkle with parsley and serve immediately."
         ]
     },
-    {
-        "recipe": {
+    
+        "recipe2": {
             "name": "Macarrão com Carne Moída e Tomate",
             "ingredients": [
                 "500g de macarrão tipo espaguete",
@@ -42,5 +42,5 @@
                 "Sirva quente, decorado com queijo parmesão ralado a gosto (opcional)."
             ]
         }
-    }
-}
+
+    }   
