@@ -1,7 +1,7 @@
 import requests
 import json
 import os
-import util
+import handler.util
 
 token = os.getenv("TODOIST_API_KEY_DEV")
 header = {'Authorization':f"Bearer {token}"}
@@ -40,8 +40,6 @@ def postGroceryListProject() -> int:
     return grocery_list.get("id")
 
 def postGroceryListTask(grocery : dict)->str:
-
-   
    
     if SearchGroceryList() == type(int): grocery_id = SearchGroceryList()
     for key,value in grocery.items():
