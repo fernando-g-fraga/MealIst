@@ -1,5 +1,7 @@
 import google.generativeai as genIA
 import os
+import json
+from typing import List, Dict, Any
 
 def configureGemini():
     genIA.configure(
@@ -24,13 +26,15 @@ def configureGemini():
             ]}
         }
 
-    system_instruction = '''You will receive at least a recipe. Your goal is to create two json files: 
+    system_instruction = '''You will receive at least one recipe. Your goal is to create one json file for each recipe and only one grocery shop json: 
                         Recipes: {
                         name: recipe name, 
                         ingredients: ["ingredient1", "ingredient2", ...], 
                         directions: ["step 1 - ..."]} 
                         Grocery_shop: {"ingredient1": 2 boxes, "ingredient2": 1kg}. 
-                        All the responses should be in portuguese'''
+                        All the responses should be in portuguese
+                        The Grocery_shop ingredients quantity should be increased with the recipes requirement.
+                         '''
 
 
     model = genIA.GenerativeModel(
@@ -40,14 +44,13 @@ def configureGemini():
 
     return model
 
-def CreateRecipe(list_ingredients:list):
+def CreateRecipe(list_ingredients:list[str]) -> dict:
     model = configureGemini()
-    recipe = []
-    for i in list_ingredients:
-        prompt = f"Give me the recipe for {i} and the grocery list"
-        try: 
-            recipe.append(model.generate_content(contents=prompt).text)
-        except:
-            return False
-        
-    return recipe
+    full_response:Dict
+    prompt = f"Give me the recipe for {list_ingredients} and the grocery list"
+    full_responseText = model.generate_content(prompt).text
+    print(full_responseText)
+    full_response = json.loads(full_responseText)
+
+
+    return full_response

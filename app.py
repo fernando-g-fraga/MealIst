@@ -1,12 +1,13 @@
+from handler.util import response_example
 from handler.gemini import CreateRecipe
-from app_middlewere import ConvertToDict
+import app_middlewere
 import json
 import io
 
 
-list_ingredients = ["Macarrão Carbonara", "Pão de Queijo"]
+userRecipes = ["Macarrão Carbonara", "Pão de Queijo"]
 
-def coletaReceitas():
+def coletaReceitas()->list[str]:
     print("Bem vindo! Este aplicativo foi feito para gerar uma lista de compras com base nas receitas solicitadas.")
     
     # keep_going = True
@@ -20,10 +21,7 @@ def coletaReceitas():
     #     list_ingredients.append(ingredient)
     #     count+=1
 
-    return list_ingredients 
+    return userRecipes 
 
-list_ingredients = coletaReceitas()
-gemini_response = CreateRecipe(list_ingredients)
-ConvertToDict(gemini_response)
-
+teste = app_middlewere.splitResponse(response_example)
 

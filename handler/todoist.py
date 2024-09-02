@@ -5,9 +5,6 @@ import handler.util
 
 token = os.getenv("TODOIST_API_KEY_DEV")
 header = {'Authorization':f"Bearer {token}"}
-# teste = requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header)
-
-# print (teste.content)
 
 def SearchGroceryList ():
     """Search for the project Grocery List that will receive the shopping list for the generated recipes.
