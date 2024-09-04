@@ -1,5 +1,6 @@
 from handler.util import response_example
 from handler.gemini import CreateRecipe
+from handler import todoist
 import app_middlewere
 import json
 import io
@@ -25,3 +26,4 @@ def coletaReceitas()->list[str]:
 
 teste = app_middlewere.splitResponse(response_example)
 
+grocery_list = todoist.postGroceryListTask(teste.Grocery)

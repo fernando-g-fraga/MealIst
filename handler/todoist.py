@@ -2,6 +2,7 @@ import requests
 import json
 import os
 import handler.util
+import datetime as d
 
 token = os.getenv("TODOIST_API_KEY_DEV")
 header = {'Authorization':f"Bearer {token}"}
@@ -78,32 +79,25 @@ def postWeeklyMealProject(existent : bool) -> int:
     return grocery_list.get("id")
 
 
-
-
-
-
-# def postWeeklyMealTasks(meal : dict)->str:
+def postWeeklyMealTasks(meal : dict)->str:
     
-#     if SearchWeeklyMeal() == type(int):
-#         id_weeklymeal = grocerylist()
-    
-
-#     i = 0
-#     while i < len(meal):
-#         data = {
-#         "content":f"{meal.get("name")}",
-#         "description": f"{meal.get("ingredients")} \n {meal.get("instructions")}",
-#         "project_id": weeklymeal_id
-#     } 
-#         res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
-#         if res.status_code == 200: 
-#             print(f"{meal.get("name")} salvo com sucesso!")
-#         else: 
-#             print(f"Falha em salvar a receita {meal.get("name")}")
-#         i=+ 1
-#     return res.status_code
+    if SearchWeeklyMeal() == type(int): id_weeklymeal = SearchWeeklyMeal()    
+    for week in range(0,6):
+        day = d.datetime.now() 
+        while i < len(meal):
+            data = {
+            "content":f"{meal.get("name")}",
+            "description": f"{meal.get("ingredients")} \n {meal.get("instructions")}",
+            "project_id": id_weeklymeal,
+            "due":{
+                "date":date()
+                },
+        } 
+        res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
+        if res.status_code == 200: 
+            print(f"{meal.get("name")} salvo com sucesso!")
+        else: 
+            print(f"Falha em salvar a receita {meal.get("name")}")
+        i=+ 1
+    return res.status_code
         
-
-# grocerylist = createGroceryList(util.grocery)
-# print(grocerylist)
-    
