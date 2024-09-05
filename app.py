@@ -24,6 +24,6 @@ def coletaReceitas()->list[str]:
 
     return userRecipes 
 
-teste = app_middlewere.splitResponse(response_example)
-
-grocery_list = todoist.postGroceryListTask(teste.Grocery)
+weekRecipe = app_middlewere.splitResponse(response_example) #maybe inclue some error handling here. 
+grocery_list = todoist.postGroceryListTask(weekRecipe.Grocery)
+weekly_meal = todoist.postWeeklyMealTasks(weekRecipe.Recipe)

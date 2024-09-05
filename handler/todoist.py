@@ -1,7 +1,7 @@
 import requests
 import json
 import os
-import handler.util
+from handler.util import get_WeekArray
 import datetime as d
 
 token = os.getenv("TODOIST_API_KEY_DEV")
@@ -10,7 +10,7 @@ header = {'Authorization':f"Bearer {token}"}
 def SearchGroceryList ():
     """Search for the project Grocery List that will receive the shopping list for the generated recipes.
     It takes nothing and returns either an int ID or a Bool FALSE. """
-    all_projects = dict(requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header)).json()
+    all_projects = requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header).json()
 
     for obj in all_projects: #it could be faster if i search in a string? rather than convert to a dict? Maybe...we look into this later.
         new_dict = dict(obj)
@@ -38,66 +38,62 @@ def postGroceryListProject() -> int:
     return grocery_list.get("id")
 
 def postGroceryListTask(grocery : dict)->str:
-   
-    if SearchGroceryList() == type(int): grocery_id = SearchGroceryList()
-    for key,value in grocery.items():
-        data = {
-        "content":f"{key} : {value}",
-        "project_id": grocery_id
-    } 
-        res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
+    grocery_id = SearchGroceryList()
 
-    return f"Ocorreu um erro ao criar o projeto Grocery List: {res.status_code}"
+    if grocery_id == type(int): 
+        for key,value in grocery.items():
+            data = {
+            "content":f"{key} : {value}",
+            "project_id": grocery_id
+        } 
+            res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
+        
 
-
-def SearchWeeklyMeal ():
+def SearchWeeklyMealProject ():
     """Search for the project called WeeklyMeal with the meal prep and returns the INT ID, if not found will return false"""
-    all_projects = requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header).json()
-    existent = False
-    
+    all_projects = dict(requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header).json())    
     for project in all_projects:
-        new_dict = dict(project)
-        if new_dict.get('name')== "Weekly List":
-            existent = True
-            return new_dict.get('id')
-        continue
-    return existent
+        if project.get('name') == "Weekly List":
+            return project.get("ID")
+        return None 
 
-def postWeeklyMealProject(existent : bool) -> int:
+def postWeeklyMealProject():
     """Create a WeeklyMeal Project and return the INT ID, if not succced will return a STRING error"""
     data ={ 
     "name":"Weekly Meal",
     "view_style":"List",
 }
-    if not existent:
-        req = requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data)
-        grocery_list = dict(req.json)
-        existent = False
-        if req.status_code != 200:
-            print(f"Error! {grocery_list.status_code}")
-            return f"Ocorreu um erro ao criar o projeto WeeklyMeal: {grocery_list.status}"
+    req = dict(requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data).json)
+    grocery_list = dict(req.json)
+
+    if req.status_code != 200:
+        print(f"Error! {grocery_list.status_code}")
+        return f"Ocorreu um erro ao criar o projeto WeeklyMeal: {grocery_list.status}"
     return grocery_list.get("id")
 
 
-def postWeeklyMealTasks(meal : dict)->str:
+def postWeeklyMealTasks(weekly_meal : dict)->str:
+    status_code:int
+
+    if SearchWeeklyMealProject() == type(int): id_weeklymeal = SearchWeeklyMealProject()    
     
-    if SearchWeeklyMeal() == type(int): id_weeklymeal = SearchWeeklyMeal()    
-    for week in range(0,6):
-        day = d.datetime.now() 
-        while i < len(meal):
+    for date in get_WeekArray(weekly_meal):
+        while i < len(weekly_meal):
             data = {
-            "content":f"{meal.get("name")}",
-            "description": f"{meal.get("ingredients")} \n {meal.get("instructions")}",
+            "content":f"{weekly_meal.get("name")}",
+            "description": f"{weekly_meal.get("ingredients")} \n {weekly_meal.get("instructions")}",
             "project_id": id_weeklymeal,
             "due":{
-                "date":date()
+                "date":(f"{date} at 12:00 PM - Lunch {weekly_meal.get("name")}" )
                 },
         } 
         res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
-        if res.status_code == 200: 
-            print(f"{meal.get("name")} salvo com sucesso!")
+        res.status_code = status_code
+
+        if status_code == 200: 
+            print(f"{weekly_meal.get("name")} salvo com sucesso!")
         else: 
-            print(f"Falha em salvar a receita {meal.get("name")}")
-        i=+ 1
-    return res.status_code
+            print(f"Falha em salvar a receita {weekly_meal.get("name")} | {res.status_code}")
+    i=+ 1
+    return status_code
         
