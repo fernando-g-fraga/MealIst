@@ -12,17 +12,12 @@ def SearchGroceryList ():
     It takes nothing and returns either an int ID or a Bool FALSE. """
     all_projects = requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header).json()
 
-    for obj in all_projects: #it could be faster if i search in a string? rather than convert to a dict? Maybe...we look into this later.
-        new_dict = dict(obj)
-        if new_dict.get('name')== "Grocery List":
-            return new_dict.get('id')
+    for obj in all_projects: #it could be faster if i search in a string? rather than convert to a dict? Maybe...we look into this later.  
+        if obj.get('name')== "Grocery List":
+            return obj.get('id')
         continue
-     
-    try: #The error handling are sh**, i'll work on that on project later stages.
-        id_groceryList = postGroceryListProject()
-    except:
-        id_groceryList
-    
+    return None
+
 def postGroceryListProject() -> int:
     """Creates a new project called Grocery List that will receive the shopping items for the generated recipes.
     It takes a bool as paramether, and returns an an INT ID or STRING error"""
@@ -40,7 +35,7 @@ def postGroceryListProject() -> int:
 def postGroceryListTask(grocery : dict)->str:
     grocery_id = SearchGroceryList()
 
-    if grocery_id == type(int): 
+    if grocery_id != None: 
         for key,value in grocery.items():
             data = {
             "content":f"{key} : {value}",
@@ -51,11 +46,13 @@ def postGroceryListTask(grocery : dict)->str:
 
 def SearchWeeklyMealProject ():
     """Search for the project called WeeklyMeal with the meal prep and returns the INT ID, if not found will return false"""
-    all_projects = dict(requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header).json())    
+    all_projects = requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header).json()
+   
     for project in all_projects:
         if project.get('name') == "Weekly List":
-            return project.get("ID")
-        return None 
+            return project.get("id")
+        continue
+    return None 
 
 def postWeeklyMealProject():
     """Create a WeeklyMeal Project and return the INT ID, if not succced will return a STRING error"""
@@ -73,27 +70,29 @@ def postWeeklyMealProject():
 
 
 def postWeeklyMealTasks(weekly_meal : dict)->str:
-    status_code:int
 
-    if SearchWeeklyMealProject() == type(int): id_weeklymeal = SearchWeeklyMealProject()    
+    id_weeklymeal = SearchWeeklyMealProject()
     
-    for date in get_WeekArray(weekly_meal):
-        while i < len(weekly_meal):
-            data = {
-            "content":f"{weekly_meal.get("name")}",
-            "description": f"{weekly_meal.get("ingredients")} \n {weekly_meal.get("instructions")}",
-            "project_id": id_weeklymeal,
-            "due":{
-                "date":(f"{date} at 12:00 PM - Lunch {weekly_meal.get("name")}" )
-                },
-        } 
-        res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
-        res.status_code = status_code
+    if id_weeklymeal != None:
+        weekArray = get_WeekArray(weekly_meal)
+    else:
+        postWeeklyMealProject() #it should be abstracted on other function. Will do later. 
 
-        if status_code == 200: 
-            print(f"{weekly_meal.get("name")} salvo com sucesso!")
+    for index,recipe in enumerate(weekly_meal):
+        data = {
+        "content":f"{weekly_meal[index].get("name")}",
+        "description": f"{weekly_meal[index].get("ingredients")} \n {weekly_meal[index].get("instructions")}",
+        "project_id": id_weeklymeal,
+        "due":{
+            "date":(f"{weekArray[index]} at 12:00 PM - Lunch {weekly_meal[index].get("name")}" )
+            },
+    } 
+        res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
+
+        if res.status_code == 200: 
+            print(f"{weekly_meal[index].get("name")} salvo com sucesso!")
         else: 
             print(f"Falha em salvar a receita {weekly_meal.get("name")} | {res.status_code}")
-    i=+ 1
-    return status_code
+    
+    return id_weeklymeal
         

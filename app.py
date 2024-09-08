@@ -2,8 +2,7 @@ from handler.util import response_example
 from handler.gemini import CreateRecipe
 from handler import todoist
 import app_middlewere
-import json
-import io
+
 
 
 userRecipes = ["Macarrão Carbonara", "Pão de Queijo"]
