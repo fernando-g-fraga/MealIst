@@ -1,8 +1,8 @@
 from handler.util import response_example
 from handler.gemini import CreateRecipe
+from handler import todoist
 import app_middlewere
-import json
-import io
+
 
 
 userRecipes = ["Macarrão Carbonara", "Pão de Queijo"]
@@ -23,5 +23,6 @@ def coletaReceitas()->list[str]:
 
     return userRecipes 
 
-teste = app_middlewere.splitResponse(response_example)
-
+weekRecipe = app_middlewere.splitResponse(response_example) #maybe inclue some error handling here. 
+grocery_list = todoist.postGroceryListTask(weekRecipe.Grocery)
+weekly_meal = todoist.postWeeklyMealTasks(weekRecipe.Recipe)
