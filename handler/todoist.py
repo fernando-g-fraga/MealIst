@@ -60,13 +60,12 @@ def postWeeklyMealProject():
     "name":"Weekly Meal",
     "view_style":"List",
 }
-    req = dict(requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data).json)
-    grocery_list = dict(req.json)
+    req = requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data)
+    parsedRes = req.json()
 
     if req.status_code != 200:
-        print(f"Error! {grocery_list.status_code}")
-        return f"Ocorreu um erro ao criar o projeto WeeklyMeal: {grocery_list.status}"
-    return grocery_list.get("id")
+        return f"Ocorreu um erro ao criar o projeto WeeklyMeal: {req.status_code}"
+    return parsedRes.get("id")
 
 
 def postWeeklyMealTasks(weekly_meal : dict)->str:
