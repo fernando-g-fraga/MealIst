@@ -4,6 +4,9 @@ import os
 from handler.util import get_WeekArray
 import datetime as d
 
+MEAL_PROJECT_NAME = "Meal Prep"
+GROCERY_PROJECT_NAME = "Grocery List"
+
 token = os.getenv("TODOIST_API_KEY_DEV")
 header = {'Authorization':f"Bearer {token}"}
 
@@ -13,7 +16,7 @@ def SearchGroceryList ():
     all_projects = requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header).json()
 
     for obj in all_projects: #it could be faster if i search in a string? rather than convert to a dict? Maybe...we look into this later.  
-        if obj.get('name')== "Grocery List":
+        if obj.get('name')== GROCERY_PROJECT_NAME:
             return obj.get('id')
         continue
     return None
@@ -22,7 +25,7 @@ def postGroceryListProject() -> int:
     """Creates a new project called Grocery List that will receive the shopping items for the generated recipes.
     It takes a bool as paramether, and returns an an INT ID or STRING error"""
     data ={ 
-    "name":"Grocery List",
+    "name":GROCERY_PROJECT_NAME,
     "view_style":"List",
 }   
     res = requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data)
@@ -49,7 +52,7 @@ def SearchWeeklyMealProject ():
     all_projects = requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header).json()
    
     for project in all_projects:
-        if project.get('name') == "Weekly List":
+        if project.get('name') == MEAL_PROJECT_NAME:
             return project.get("id")
         continue
     return None 
@@ -57,7 +60,7 @@ def SearchWeeklyMealProject ():
 def postWeeklyMealProject():
     """Create a WeeklyMeal Project and return the INT ID, if not succced will return a STRING error"""
     data ={ 
-    "name":"Weekly Meal",
+    "name":MEAL_PROJECT_NAME,
     "view_style":"List",
 }
     req = requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data)
@@ -68,30 +71,29 @@ def postWeeklyMealProject():
     return parsedRes.get("id")
 
 
-def postWeeklyMealTasks(weekly_meal : dict)->str:
+def postWeeklyMealTasks(weekly_meal : list[dict])->str:
 
     id_weeklymeal = SearchWeeklyMealProject()
+    weekArray = get_WeekArray(weekly_meal)
     
-    if id_weeklymeal != None:
-        weekArray = get_WeekArray(weekly_meal)
-    else:
-        postWeeklyMealProject() #it should be abstracted on other function. Will do later. 
+    if id_weeklymeal == None:
+       id_weeklymeal = postWeeklyMealProject()
 
-    for index,recipe in enumerate(weekly_meal):
+    for i,meal in enumerate(weekly_meal):
         data = {
-        "content":f"{weekly_meal[index].get("name")}",
-        "description": f"{weekly_meal[index].get("ingredients")} \n {weekly_meal[index].get("instructions")}",
+        "content":f"{meal.get("name")}",
+        "description": f"{meal.get("ingredients")} \n {meal.get("instructions")}",
         "project_id": id_weeklymeal,
         "due":{
-            "date":(f"{weekArray[index]} at 12:00 PM - Lunch {weekly_meal[index].get("name")}" )
+            "date":(f"{weekArray[i]} at 12:00 PM - Lunch {meal.get("name")}" )
             },
     } 
         res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
 
         if res.status_code == 200: 
-            print(f"{weekly_meal[index].get("name")} salvo com sucesso!")
+            print(f"{meal.get("name")} salvo com sucesso!")
         else: 
-            print(f"Falha em salvar a receita {weekly_meal.get("name")} | {res.status_code}")
+            print(f"Falha em salvar a receita {meal.get("name")} | {res.status_code}")
     
     return id_weeklymeal
         
