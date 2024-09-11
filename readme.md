@@ -20,6 +20,11 @@ This project integrates Google Gemini with a ToDoist account to help users plan 
   - **Weekly Meal Tasks**: The app creates a to-do list for the week with ingredients and directions for the provided recipes.
   - **Grocery List Task**: The app creates a grocery list task in ToDoist.
 
+## Known Issues
+- **lack of automated tests**: Still on my roadmap to create unit and integration tests for this projectt
+- **gemini allucinations**: Sometimes Gemini output Grocery list including mesuraments rather than item quantity
+- **input validation**: Since this is a MVP, i had to overlook validators, this will be fixed asap.   
+
 ## Usage
 
 1. **Collect Recipes**:
