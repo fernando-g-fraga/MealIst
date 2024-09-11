@@ -7,7 +7,6 @@
 </p>
 
 
-
 # Meal Planning CLI Application
 
 This project integrates Google Gemini with a ToDoist account to help users plan their meals for the week. The application allows users to input the recipes they want to eat during the week and generates a meal prep plan, including directions and ingredients, as well as a grocery shopping list.

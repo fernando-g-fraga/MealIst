@@ -1,47 +1,40 @@
 '[
     {
-        "name": "Macarrão Carbonara",
+        "directions": [
+            "Cozinhe o macarrão em água fervente com sal até ficar al dente. Escorra e reserve.",
+            "Em uma tigela grande, misture os ovos, queijo parmesão, pimenta do reino e sal.",
+            "Adicione o macarrão cozido à tigela com os ovos e misture bem.",
+            "Adicione o bacon frito e misture novamente.",
+            "Sirva imediatamente, polvilhado com queijo parmesão extra, se desejar.",
+            "Para um sabor mais intenso, adicione um fio de azeite de oliva extra virgem antes de servir."
+        ],
         "ingredients": [
             "500g de macarrão espaguete",
-            "200g de pancetta em cubos",
-            "2 ovos inteiros",
-            "2 gemas",
-            "100g de queijo parmesão ralado",
-            "Pimenta do reino moída na hora",
-            "Sal"
+            "4 ovos grandes",
+            "150g de queijo parmesão ralado",
+            "150g de bacon em cubos",
+            "Pimenta do reino a gosto",
+            "Sal a gosto"
         ],
-        "directions": [
-            "Cozinhe o macarrão em água fervente com sal até ficar al dente.",
-            "Enquanto o macarrão cozinha, frite a pancetta em uma panela até ficar crocante.",
-            "Retire a pancetta da panela e reserve.",
-            "Na mesma panela, adicione os ovos inteiros, as gemas, o queijo parmesão e uma pitada de sal.",
-            "Misture bem com um fouet até obter um creme homogêneo.",
-            "Adicione o macarrão cozido e escorrido ao creme de ovos e misture bem.",
-            "Adicione a pancetta frita e misture novamente.",
-            "Tempere com pimenta do reino a gosto.",
-            "Sirva imediatamente."
-        ]
+        "recipe_name": "Macarrão Carbonara"
     },
     {
-        "name": "Pão de Queijo",
-        "ingredients": [
-            "1 xícara (240ml) de leite integral",
-            "1 xícara (120g) de polvilho doce",
-            "1 xícara (120g) de polvilho azedo",
-            "1/2 xícara (100g) de queijo minas padrão ralado",
-            "2 ovos grandes",
-            "1 colher de sopa (15g) de manteiga sem sal",
-            "1 colher de chá (5g) de sal"
-        ],
         "directions": [
-            "Em uma panela média, aqueça o leite até ferver.",
-            "Retire do fogo e adicione o polvilho doce, mexendo com um fouet até dissolver completamente.",
-            "Adicione o polvilho azedo, o queijo ralado, os ovos, a manteiga e o sal.",
-            "Misture bem com um fouet até obter uma massa lisa e homogênea.",
-            "Transfira a massa para um saco de confeitar com bico redondo.",
-            "Unte uma assadeira com manteiga e farinha de trigo.",
-            "Com o saco de confeitar, faça bolinhas de massa na assadeira, deixando espaço entre elas.",
-            "Asse em forno pré-aquecido a 180°C por 20 minutos, ou até dourar."
-        ]
+            "Em uma tigela grande, misture a tapioca, o queijo minas, o ovo, o leite e o sal.",
+            "Amasse bem até obter uma massa homogênea.",
+            "Aqueça uma frigideira antiaderente em fogo médio.",
+            "Unte as mãos com um pouco de óleo e modele bolinhas com a massa.",
+            "Acomode as bolinhas na frigideira quente e deixe dourar dos dois lados.",
+            "Sirva quente.",
+            "Para um sabor mais intenso, adicione um pouco de queijo parmesão ralado por cima."
+        ],
+        "ingredients": [
+            "200g de tapioca granulada",
+            "200g de queijo minas padrão ralado",
+            "1 ovo",
+            "1/2 xícara de leite integral",
+            "1 colher de chá de sal"
+        ],
+        "recipe_name": "Pão de Queijo"
     }
-]\n'
+] '
