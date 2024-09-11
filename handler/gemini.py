@@ -14,27 +14,29 @@ def configureGemini():
         response_mime_type="application/json"
     )
 
-    output_sample =   {"recipe": {
-            "name": "Recipe Name",
-            "ingredients": [
-                "First Ingredient",
-                "Second Ingredient",
-                "..."
-            ],
-            "instructions": [
-                "Preheat oven to 400 degrees F (200 degrees C)....",
-            ]}
-        }
+    system_instruction = '''You will receive at least one recipe name and maximum 5 recipes names. 
+    Your goal is to create one json file with an object list for each recipe and a separeted json for grocery shop items: 
+    
+    Response RECIPE JSON EXAMPLE:
+    Recipes: {[
+    "name": recipe name, 
+    "ingredients": ["ingredient1", "ingredient2", ...], 
+    "directions": ["step 1 - ..."]
+    },
+    "name": recipe name, 
+    "ingredients": ["ingredient1", "ingredient2", ...], 
+    "directions": ["step 1 - ..."]},
+    ]
+   
+    Response GROCERY SHOP JSON EXAMPLE:
+    "Grocery_shop": {"ingredient1": 2 boxes, "ingredient2": 1kg}.
 
-    system_instruction = '''You will receive at least one recipe. Your goal is to create one json file for each recipe and only one grocery shop json: 
-                        Recipes: {
-                        name: recipe name, 
-                        ingredients: ["ingredient1", "ingredient2", ...], 
-                        directions: ["step 1 - ..."]} 
-                        Grocery_shop: {"ingredient1": 2 boxes, "ingredient2": 1kg}. 
-                        All the responses should be in portuguese
-                        The Grocery_shop ingredients quantity should be increased with the recipes requirement.
-                         '''
+    ADITIONAL INSTRUCTIONS:
+    All the responses should be in portuguese.
+    The Grocery_shop ingredients quantity should be increased with the recipes requirement.
+    Use double-quotes everytime.
+    Never accept more than 5 recipes
+    '''
 
 
     model = genIA.GenerativeModel(
@@ -46,7 +48,7 @@ def configureGemini():
 
 def CreateRecipe(list_ingredients:list[str]) -> dict:
     model = configureGemini()
-    full_response:Dict
+    full_response:dict
     prompt = f"Give me the recipe for {list_ingredients} and the grocery list"
     full_responseText = model.generate_content(prompt).text
     print(full_responseText)

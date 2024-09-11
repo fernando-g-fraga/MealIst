@@ -1,0 +1,47 @@
+{
+    "Macarrão Carbonara": {
+        "name": "Macarrão Carbonara",
+        "ingredients": [
+            "500g de macarrão espaguete",
+            "200g de pancetta defumada em cubos",
+            "2 gemas de ovo",
+            "1 ovo inteiro",
+            "1/2 xícara de queijo parmesão ralado",
+            "1/4 xícara de água do cozimento do macarrão",
+            "Sal e pimenta do reino a gosto"
+        ],
+        "directions": [
+            "Cozinhe o macarrão em água fervente com sal até ficar al dente.",
+            "Enquanto o macarrão cozinha, doure a pancetta em uma panela em fogo médio.",
+            "Bata as gemas e o ovo com o queijo parmesão, o sal e a pimenta do reino.",
+            "Adicione a água do cozimento do macarrão à mistura de ovos, mexendo até obter um creme homogêneo.",
+            "Escorra o macarrão e adicione-o à panela com a pancetta.",
+            "Junte o creme de ovo ao macarrão e misture bem.",
+            "Sirva imediatamente.",
+            "Para um toque extra de sabor, adicione um fio de azeite extra virgem."
+        ]
+    }
+}
+{
+    "Pão de Queijo": {
+        "name": "Pão de Queijo",
+        "ingredients": [
+            "1 xícara de polvilho doce",
+            "1 xícara de polvilho azedo",
+            "1 xícara de leite integral",
+            "1/2 xícara de óleo vegetal",
+            "2 ovos grandes",
+            "1/2 xícara de queijo minas padrão ralado",
+            "1 colher de chá de sal"
+        ],
+        "directions": [
+            "Misture os dois tipos de polvilho, o leite, o óleo, os ovos e o sal em uma tigela grande.",
+            "Amasse bem a massa até obter uma consistência lisa e uniforme.",
+            "Adicione o queijo ralado e misture novamente.",
+            "Aqueça uma frigideira antiaderente em fogo médio.",
+            "Com as mãos untadas, modele bolinhas de massa do tamanho de uma bola de golfe.",
+            "Acomode as bolinhas na frigideira quente e deixe dourar por cerca de 5 minutos de cada lado.",
+            "Sirva quente."
+        ]
+    }
+}

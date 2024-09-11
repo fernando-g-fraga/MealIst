@@ -1,28 +1,22 @@
-from handler.util import response_example
 from handler.gemini import CreateRecipe
 from handler import todoist
-import app_middlewere
-
-
-
-userRecipes = ["Macarrão Carbonara", "Pão de Queijo"]
+from app_middlewere import splitResponse
 
 def coletaReceitas()->list[str]:
+    recipe_list = []
+    
     print("Bem vindo! Este aplicativo foi feito para gerar uma lista de compras com base nas receitas solicitadas.")
     
-    # keep_going = True
-    # max = 5
-    # count = 0
-    # while keep_going == True:
-    #     ingredient = str(input(f"Digite o nome da receita ({count}/{max}). Precione enter para adicionar uma nova receita ou 0 caso tenha concluído.\n"))
-    #     if ingredient == str(0) or count == max:
-    #         keep_going = False
-    #         break
-    #     list_ingredients.append(ingredient)
-    #     count+=1
 
-    return userRecipes 
+    for i in range(1,4):
+        user_input = input(f"Por favor, insira abaixo o nome da receita que gostaria de agendar. Case deseje encerrar digite 0 \n")
+        if  user_input ==  "0":
+            break
+        recipe_list.append(user_input)
+        print(f"Receita {user_input} adicionada com sucesso. {i}/5")
+    return recipe_list
 
-weekRecipe = app_middlewere.splitResponse(response_example) #maybe inclue some error handling here. 
+recipe_list = coletaReceitas()
+weekRecipe = splitResponse(CreateRecipe(recipe_list))
 grocery_list = todoist.postGroceryListTask(weekRecipe.Grocery)
 weekly_meal = todoist.postWeeklyMealTasks(weekRecipe.Recipe)
