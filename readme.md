@@ -3,7 +3,7 @@
 
 
 <p align="center">
-<img width=400px height=400px src="https://github.com/fernando-g-fraga/MealIst/blob/main/Design%201.png">
+<img width=400px height=400px src="https://github.com/fernando-g-fraga/MealIst/blob/main/util/Design%201.png">
 </p>
 
 
