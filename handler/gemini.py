@@ -50,8 +50,6 @@ def CreateRecipe(list_ingredients:list[str]):
     model = configureGemini()
 
     prompt = f"Give me the recipe for {list_ingredients} and the grocery list"
-
     response = model.generate_content(prompt)
     
-
     return response

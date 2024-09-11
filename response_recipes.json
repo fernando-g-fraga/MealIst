@@ -1,47 +1,59 @@
 {
-    "Macarrão Carbonara": {
-        "name": "Macarrão Carbonara",
-        "ingredients": [
-            "500g de macarrão espaguete",
-            "200g de pancetta defumada em cubos",
-            "2 gemas de ovo",
-            "1 ovo inteiro",
-            "1/2 xícara de queijo parmesão ralado",
-            "1/4 xícara de água do cozimento do macarrão",
-            "Sal e pimenta do reino a gosto"
-        ],
-        "directions": [
-            "Cozinhe o macarrão em água fervente com sal até ficar al dente.",
-            "Enquanto o macarrão cozinha, doure a pancetta em uma panela em fogo médio.",
-            "Bata as gemas e o ovo com o queijo parmesão, o sal e a pimenta do reino.",
-            "Adicione a água do cozimento do macarrão à mistura de ovos, mexendo até obter um creme homogêneo.",
-            "Escorra o macarrão e adicione-o à panela com a pancetta.",
-            "Junte o creme de ovo ao macarrão e misture bem.",
-            "Sirva imediatamente.",
-            "Para um toque extra de sabor, adicione um fio de azeite extra virgem."
-        ]
-    }
-}
-{
-    "Pão de Queijo": {
-        "name": "Pão de Queijo",
-        "ingredients": [
-            "1 xícara de polvilho doce",
-            "1 xícara de polvilho azedo",
-            "1 xícara de leite integral",
-            "1/2 xícara de óleo vegetal",
-            "2 ovos grandes",
-            "1/2 xícara de queijo minas padrão ralado",
-            "1 colher de chá de sal"
-        ],
-        "directions": [
-            "Misture os dois tipos de polvilho, o leite, o óleo, os ovos e o sal em uma tigela grande.",
-            "Amasse bem a massa até obter uma consistência lisa e uniforme.",
-            "Adicione o queijo ralado e misture novamente.",
-            "Aqueça uma frigideira antiaderente em fogo médio.",
-            "Com as mãos untadas, modele bolinhas de massa do tamanho de uma bola de golfe.",
-            "Acomode as bolinhas na frigideira quente e deixe dourar por cerca de 5 minutos de cada lado.",
-            "Sirva quente."
-        ]
+    "Recipes": [
+        {
+            "name": "Macarrão Carbonara",
+            "ingredients": [
+                "500g de macarrão espaguete",
+                "200g de pancetta em cubos",
+                "3 ovos grandes",
+                "50g de queijo parmesão ralado",
+                "1/2 xícara de água do cozimento do macarrão",
+                "Sal e pimenta do reino a gosto"
+            ],
+            "directions": [
+                "Cozinhe o macarrão em água fervente com sal até ficar al dente.",
+                "Enquanto o macarrão cozinha, frite a pancetta em uma panela até ficar crocante.",
+                "Bata os ovos, o queijo parmesão e a água do cozimento do macarrão em um bowl até obter um creme homogêneo.",
+                "Escorra o macarrão e adicione-o à panela com a pancetta.",
+                "Misture o creme de ovos com o macarrão e a pancetta.",
+                "Tempere com sal e pimenta do reino a gosto.",
+                "Sirva imediatamente."
+            ]
+        },
+        {
+            "name": "Pão de Queijo",
+            "ingredients": [
+                "1 xícara (240ml) de leite integral",
+                "1/2 xícara (120ml) de óleo vegetal",
+                "1 ovo grande",
+                "1 colher de sopa (15g) de queijo parmesão ralado",
+                "1 colher de sopa (15g) de manteiga sem sal",
+                "1 colher de chá (5g) de sal",
+                "2 xícaras (280g) de polvilho doce",
+                "1/2 xícara (60g) de queijo minas padrão ralado"
+            ],
+            "directions": [
+                "Em uma panela média, misture o leite, o óleo, o ovo, o queijo parmesão, a manteiga e o sal.",
+                "Leve ao fogo médio, mexendo sempre, até ferver.",
+                "Retire do fogo e adicione o polvilho doce, mexendo até obter uma massa homogênea.",
+                "Adicione o queijo minas padrão ralado e misture bem.",
+                "Com as mãos untadas com óleo, modele bolinhas de massa do tamanho de uma noz.",
+                "Acomode as bolinhas em uma assadeira untada e enfarinhada.",
+                "Asse em forno pré-aquecido a 180°C por 30 minutos ou até dourar."
+            ]
+        }
+    ],
+    "Grocery_shop": {
+        "macarrão espaguete": "1 pacote",
+        "pancetta": "200g",
+        "ovos": "6 unidades",
+        "queijo parmesão": "100g",
+        "leite integral": "1 caixa",
+        "óleo vegetal": "1 garrafa",
+        "queijo minas padrão": "1 pacote",
+        "polvilho doce": "1 pacote",
+        "manteiga sem sal": "1 tablete",
+        "sal": "1 pacote",
+        "pimenta do reino": "1 pote"
     }
 }
