@@ -17,10 +17,11 @@ def coletaReceitas()->list[str]:
     return recipe_list
 
 lista_receitas = coletaReceitas()
-gemini_Response = CreateRecipe(lista_receitas)
-Recipe_Grocery = splitResponse(gemini_Response.text)
+Recipe_Grocery = CreateRecipe(lista_receitas)
 
 todoist.postWeeklyMealTasks(Recipe_Grocery.Recipe)
 todoist.postGroceryListTask(Recipe_Grocery.Grocery)
+
+
 
 
