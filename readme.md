@@ -21,7 +21,7 @@ This project integrates Google Gemini with a ToDoist account to help users plan 
   - **Grocery List Task**: The app creates a grocery list task in ToDoist.
 
 ## Known Issues
-- **lack of automated tests**: Still on my roadmap to create unit and integration tests for this projectt
+- **lack of automated tests**: Still on my roadmap to create unit and integration tests for this project
 - **gemini allucinations**: Sometimes Gemini output Grocery list including mesuraments rather than item quantity
 - **input validation**: Since this is a MVP, i had to overlook validators, this will be fixed asap.   
 
