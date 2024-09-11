@@ -43,15 +43,14 @@ This project integrates Google Gemini with a ToDoist account to help users plan 
 ###  Installation
 1. Clone the repository:
 
-``` git clone https://github.com/yourusername/mealplanningCLI.git```
+```git clone https://github.com/yourusername/mealplanningCLI.git```<br>
 ``` cd mealplanningCLI```
 
-2. Install the required dependencies:
+2. Install the required dependencies:<br>
 ```pip install -r requirements.txt```
 
 3. Set up your API keys for Google Gemini and ToDoist.
 
 ## Running the App
-Run the application using the following command:
-
+Run the application using the following command:<br>
 ```python app.py```
