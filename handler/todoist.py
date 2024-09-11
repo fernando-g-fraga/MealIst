@@ -32,8 +32,8 @@ def postGroceryListProject() -> int:
     req = requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data)
     res = req.json()
 
-    if res.status_code != 200:
-        return res.raise_for_status()
+    if req.status_code != 200:
+        return req.raise_for_status()
     return res.get("id")
 
 def postGroceryListTask(grocery : dict)->str:
@@ -42,9 +42,9 @@ def postGroceryListTask(grocery : dict)->str:
     if grocery_id == None:
         grocery_id = postGroceryListProject() 
     
-    for key,value in grocery.items():
+    for value in grocery.get("ingredient"):
         data = {
-        "content":f"{key} : {value}",
+        "content":f"{value}",
         "project_id": grocery_id
     } 
         req = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
@@ -80,29 +80,30 @@ def postWeeklyMealProject():
     return parsedRes.get("id")
 
 
-def postWeeklyMealTasks(weekly_meal : list[dict])->str:
+def postWeeklyMealTasks(weekly_meal : list[dict],n_Receitas: int)->str:
 
     id_weeklymeal = SearchWeeklyMealProject()
-    weekArray = get_WeekArray(weekly_meal)
+    
+    weekArray = get_WeekArray(n_Receitas)
     
     if id_weeklymeal == None:
        id_weeklymeal = postWeeklyMealProject()
 
     for i,meal in enumerate(weekly_meal):
         data = {
-        "content":f"{meal.get("name")}",
+        "content":f"{meal.get("recipe_name")}",
         "description": f"{meal.get("ingredients")} \n {meal.get("instructions")}",
         "project_id": id_weeklymeal,
         "due":{
-            "date":(f"{weekArray[i]} at 12:00 PM - Lunch {meal.get("name")}" )
+            "date":(f"{weekArray[i]} at 12:00 PM - Lunch {meal.get("recipe_name")}" )
             },
     } 
         res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
 
         if res.status_code == 200: 
-            print(f"{meal.get("name")} salvo com sucesso!")
+            print(f"{meal.get("recipe_name")} salvo com sucesso!")
         else: 
-            print(f"Falha em salvar a receita {meal.get("name")} | {res.status_code}")
+            print(f"Falha em salvar a receita {meal.get("recipe_name")} | {res.status_code}")
     
     return id_weeklymeal
   

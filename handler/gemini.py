@@ -1,6 +1,7 @@
 import google.generativeai as genIA
 import os
 import typing_extensions as typing
+import json
 from classes import Response_Recipe
 
 class Recipe(typing.TypedDict):
@@ -69,11 +70,11 @@ def CreateRecipe(list_ingredients:list[str])-> Response_Recipe:
 
     recipes_prompt = f"Give me the recipe for {list_ingredients}"
     recipes_output = model.generate_content(recipes_prompt,generation_config=config_Recipe)
-    response_recipe.Recipe = recipes_output.text
+    response_recipe.Recipe = json.loads(recipes_output.text)
 
     grocery_prompt = f"Create a grocery shop list for those recipes {recipes_output.text}"
     grocery_ouput = model.generate_content(grocery_prompt,generation_config=config_Grocery).text
-    response_recipe.Grocery = grocery_ouput
+    response_recipe.Grocery = json.loads(grocery_ouput)
     
     return response_recipe
 
