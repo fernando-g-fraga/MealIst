@@ -10,7 +10,7 @@ def configureGemini():
 
     config = genIA.GenerationConfig(
         candidate_count=1,
-        temperature=0.7,
+        temperature=0.3,
         response_mime_type="application/json"
     )
 
@@ -35,7 +35,7 @@ def configureGemini():
     All the responses should be in portuguese.
     The Grocery_shop ingredients quantity should be increased with the recipes requirement.
     Use double-quotes everytime.
-    Never accept more than 5 recipes
+    Never accept more than 5 recipes.
     '''
 
 

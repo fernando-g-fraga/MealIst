@@ -16,7 +16,11 @@ def coletaReceitas()->list[str]:
         print(f"Receita {user_input} adicionada com sucesso. {i}/5")
     return recipe_list
 
-recipe_list = coletaReceitas()
-weekRecipe = splitResponse(CreateRecipe(recipe_list))
-grocery_list = todoist.postGroceryListTask(weekRecipe.Grocery)
-weekly_meal = todoist.postWeeklyMealTasks(weekRecipe.Recipe)
+lista_receitas = coletaReceitas()
+gemini_Response = CreateRecipe(lista_receitas)
+Recipe_Grocery = splitResponse(gemini_Response.text)
+
+todoist.postWeeklyMealTasks(Recipe_Grocery.Recipe)
+todoist.postGroceryListTask(Recipe_Grocery.Grocery)
+
+
