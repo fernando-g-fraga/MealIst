@@ -1,14 +1,12 @@
 from typing import List, Dict, Any
 from classes import Response_Recipe
+from json import loads
 
-
-def splitResponse(full_response:Dict) -> Response_Recipe:
+def splitResponse(full_response) -> Response_Recipe:
     splited_Recipe = Response_Recipe()
-    splited_Recipe.Grocery = full_response.get("Grocery_shop")
+    parser_ToDict:dict = loads(full_response)
 
-    for key in full_response.keys():
-        if key != "Grocery_shop":
-            splited_Recipe.Recipe.append(full_response[key])        
-            
-    return splited_Recipe
+    splited_Recipe.Grocery = parser_ToDict.get("Grocery_shop")
+    splited_Recipe.Recipe = parser_ToDict.get("Recipes")
 
+    return splited_Recipe 

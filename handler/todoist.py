@@ -13,9 +13,10 @@ header = {'Authorization':f"Bearer {token}"}
 def SearchGroceryList ():
     """Search for the project Grocery List that will receive the shopping list for the generated recipes.
     It takes nothing and returns either an int ID or a Bool FALSE. """
-    all_projects = requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header).json()
+    req = requests.get(f"https://api.todoist.com/rest/v2/projects",headers=header)
+    parsedRes  = req.json()
 
-    for obj in all_projects: #it could be faster if i search in a string? rather than convert to a dict? Maybe...we look into this later.  
+    for obj in parsedRes:
         if obj.get('name')== GROCERY_PROJECT_NAME:
             return obj.get('id')
         continue
@@ -28,24 +29,32 @@ def postGroceryListProject() -> int:
     "name":GROCERY_PROJECT_NAME,
     "view_style":"List",
 }   
-    res = requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data)
-    grocery_list = dict(res.json)
+    req = requests.post(f"https://api.todoist.com/rest/v2/projects",headers=header,data=data)
+    res = req.json()
 
     if res.status_code != 200:
         return res.raise_for_status()
-    return grocery_list.get("id")
+    return res.get("id")
 
 def postGroceryListTask(grocery : dict)->str:
     grocery_id = SearchGroceryList()
 
-    if grocery_id != None: 
-        for key,value in grocery.items():
-            data = {
-            "content":f"{key} : {value}",
-            "project_id": grocery_id
-        } 
-            res = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
-        
+    if grocery_id == None:
+        grocery_id = postGroceryListProject() 
+    
+    for key,value in grocery.items():
+        data = {
+        "content":f"{key} : {value}",
+        "project_id": grocery_id
+    } 
+        req = requests.post(f"https://api.todoist.com/rest/v2/tasks",data=data,headers=header)
+        if  req.status_code == 200:
+            print("Grocery Item Created!")
+        else:
+            print(f"Error on create the item. {req.status_code}")
+            
+    
+    
 
 def SearchWeeklyMealProject ():
     """Search for the project called WeeklyMeal with the meal prep and returns the INT ID, if not found will return false"""
@@ -96,4 +105,4 @@ def postWeeklyMealTasks(weekly_meal : list[dict])->str:
             print(f"Falha em salvar a receita {meal.get("name")} | {res.status_code}")
     
     return id_weeklymeal
-        
+  

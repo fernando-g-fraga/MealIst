@@ -1,46 +1,47 @@
-{
-    "recipe": {
-        "name": "Roasted Potatoes and Chanterelles",
+'[
+    {
+        "name": "Macarrão Carbonara",
         "ingredients": [
-            "1 lb. potatoes, peeled and cut into 1-inch pieces",
-            "1/2 lb. chanterelle mushrooms, cleaned",
-            "1/4 cup olive oil",
-            "1/4 teaspoon salt",
-            "1/4 teaspoon black pepper",
-            "1/4 cup chopped parsley"
+            "500g de macarrão espaguete",
+            "200g de pancetta em cubos",
+            "2 ovos inteiros",
+            "2 gemas",
+            "100g de queijo parmesão ralado",
+            "Pimenta do reino moída na hora",
+            "Sal"
         ],
-        "instructions": [
-            "Preheat oven to 400 degrees F (200 degrees C).",
-            "In a large bowl, combine potatoes, chanterelles, olive oil, salt, and pepper. Toss to coat.",
-            "Spread vegetables in a single layer on a baking sheet.",
-            "Roast in preheated oven for 30-40 minutes, or until potatoes are tender and chanterelles are golden brown.",
-            "Sprinkle with parsley and serve immediately."
+        "directions": [
+            "Cozinhe o macarrão em água fervente com sal até ficar al dente.",
+            "Enquanto o macarrão cozinha, frite a pancetta em uma panela até ficar crocante.",
+            "Retire a pancetta da panela e reserve.",
+            "Na mesma panela, adicione os ovos inteiros, as gemas, o queijo parmesão e uma pitada de sal.",
+            "Misture bem com um fouet até obter um creme homogêneo.",
+            "Adicione o macarrão cozido e escorrido ao creme de ovos e misture bem.",
+            "Adicione a pancetta frita e misture novamente.",
+            "Tempere com pimenta do reino a gosto.",
+            "Sirva imediatamente."
         ]
     },
-    
-        "recipe2": {
-            "name": "Macarrão com Carne Moída e Tomate",
-            "ingredients": [
-                "500g de macarrão tipo espaguete",
-                "500g de carne moída",
-                "1 cebola picada",
-                "2 dentes de alho picados",
-                "2 latas de tomate picado",
-                "1 colher de sopa de azeite de oliva",
-                "Sal e pimenta do reino a gosto",
-                "Queijo parmesão ralado a gosto (opcional)"
-            ],
-            "instructions": [
-                "Cozinhe o macarrão em água fervente com sal até ficar al dente. Escorra e reserve.",
-                "Em uma panela grande, aqueça o azeite de oliva em fogo médio.",
-                "Adicione a cebola picada e refogue até ficar transparente.",
-                "Acrescente o alho picado e refogue por mais 1 minuto.",
-                "Adicione a carne moída e cozinhe em fogo médio até dourar, mexendo ocasionalmente.",
-                "Tempere com sal e pimenta do reino a gosto.",
-                "Adicione o tomate picado e cozinhe por 10 minutos, ou até o molho engrossar.",
-                "Adicione o macarrão cozido ao molho e misture bem.",
-                "Sirva quente, decorado com queijo parmesão ralado a gosto (opcional)."
-            ]
-        }
-
-    }   
+    {
+        "name": "Pão de Queijo",
+        "ingredients": [
+            "1 xícara (240ml) de leite integral",
+            "1 xícara (120g) de polvilho doce",
+            "1 xícara (120g) de polvilho azedo",
+            "1/2 xícara (100g) de queijo minas padrão ralado",
+            "2 ovos grandes",
+            "1 colher de sopa (15g) de manteiga sem sal",
+            "1 colher de chá (5g) de sal"
+        ],
+        "directions": [
+            "Em uma panela média, aqueça o leite até ferver.",
+            "Retire do fogo e adicione o polvilho doce, mexendo com um fouet até dissolver completamente.",
+            "Adicione o polvilho azedo, o queijo ralado, os ovos, a manteiga e o sal.",
+            "Misture bem com um fouet até obter uma massa lisa e homogênea.",
+            "Transfira a massa para um saco de confeitar com bico redondo.",
+            "Unte uma assadeira com manteiga e farinha de trigo.",
+            "Com o saco de confeitar, faça bolinhas de massa na assadeira, deixando espaço entre elas.",
+            "Asse em forno pré-aquecido a 180°C por 20 minutos, ou até dourar."
+        ]
+    }
+]\n'
