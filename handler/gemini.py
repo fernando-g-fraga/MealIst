@@ -46,13 +46,12 @@ def configureGemini():
 
     return model
 
-def CreateRecipe(list_ingredients:list[str]) -> dict:
+def CreateRecipe(list_ingredients:list[str]):
     model = configureGemini()
-    full_response:dict
+
     prompt = f"Give me the recipe for {list_ingredients} and the grocery list"
-    full_responseText = model.generate_content(prompt).text
-    print(full_responseText)
-    full_response = json.loads(full_responseText)
 
+    response = model.generate_content(prompt)
+    
 
-    return full_response
+    return response
